@@ -1,0 +1,46 @@
+#include <iostream>
+using std::cout;
+using std::endl;
+
+class Time {
+
+
+public:
+    
+    Time() : 
+        hours(0), 
+        minutes(0), 
+        seconds(0) 
+    {}
+
+    
+    Time(int h, int m, int s) {
+      
+        hours = h + (m / 60) + (s / 3600);
+        minutes = (m % 60) + ((s % 3600) / 60);
+        seconds = s % 60;
+    }
+
+   
+    void displayTime() const {
+        cout << hours << ":" 
+            << minutes << ":" 
+            << seconds << endl;
+    }
+
+   
+    Time addTime(const Time& t) const {
+        Time result;
+        result.seconds = seconds + t.seconds;
+        result.minutes = minutes + t.minutes + (result.seconds / 60);
+        result.hours = hours + t.hours + (result.minutes / 60);
+        result.seconds %= 60;
+        result.minutes %= 60;
+        return result;
+    }
+
+private:
+    int hours;
+    int minutes;
+    int seconds;
+};
