@@ -6,8 +6,15 @@
 
 template<typename Container>
 void Print(const Container& container, const std::string& separator) {
-    for (const auto& element : container) {
-        std::cout << element << separator;
+    auto it = container.begin();
+    if (it != container.end()) {
+        std::cout << *it;
+        ++it;
+    }
+
+    while (it != container.end()) {
+        std::cout << separator << *it;
+        ++it;
     }
     std::cout << '\n';
 }
